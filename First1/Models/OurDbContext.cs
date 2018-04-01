@@ -8,9 +8,10 @@ namespace First1.Models
 {
     public class OurDbContext:DbContext
     {
-        public DbSet<User> user { get; set; }
-        public DbSet<Department> department { get; set; }
-        public DbSet<Employee> employees { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+       
     }
     
 }

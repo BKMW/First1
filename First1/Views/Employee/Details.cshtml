@@ -1,42 +1,60 @@
 ﻿@model First1.Models.Employee
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "departmentName";
 }
 
-<h2>Details</h2>
+<!---->
+<br />
+<div class="row">
+    <div class="col-1">
+        <a href="../Index">
+            <i class="fas fa-arrow-circle-left fa-3x"></i>
+        </a>
+    </div>
+    <div class="col-11" style="margin: 15px auto;">
 
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CIN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CIN)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
+<br />
+
+
+
+
+
+
+<table class="table border" style="width:50%;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.FirstName)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.LastName)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CIN)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.CIN)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @ViewBag.departmentName
+        </th>
+    </tr>
+
+</table>

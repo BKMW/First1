@@ -1,0 +1,34 @@
+﻿
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark  navbar-dark">
+        <!-- menu -->
+        <a href="#sidebar" data-toggle="collapse"><i class="fas fa-user fa-lg"></i></a>
+        <!---->
+        <a class="navbar-brand" href="/">:/Root</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Department/Index">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Employee/Index">Employees</a>
+                </li>
+
+
+            </ul>
+            <div class="my-2 my-lg-3">
+
+                <!--partial view _login-->
+                @Html.Partial("_Login")
+            </div>
+        </div>
+    </nav>
+
+</header>

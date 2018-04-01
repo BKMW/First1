@@ -1,48 +1,126 @@
 ﻿@model First1.Models.User
-
 @{
     ViewBag.Title = "Login";
 }
 
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control"} })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+    @*<div style="height:800px;background-color:aqua;">
+
+    </div>*@
+<div class="demo">
+
+    @*<hr />*@
+    <br />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger" style="margin-left:15px;">@ViewBag.Message</div>
+    }
+    <br />
+    <br />
+    <br />
+    <div class="row" style="margin:0;padding:0;margin-top: 60px;">
+
+        <div class="col-9" style="">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/Images/1.jpg" alt="" style="width:100%" />
+
+                        <div class="carousel-caption">
+                            <h3>Root 3</h3>
+                            <p>We had such a great time in LA!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Images/2.jpg" alt="" style="width:100%" />
+
+                        <div class="carousel-caption">
+                            <h3>Root 2</h3>
+                            <p>We had such a great time in LA!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Images/3.jpg" alt="" style="width:100%" />
+
+                        <div class="carousel-caption">
+                            <h3>Root 3</h3>
+                            <p>We had such a great time in LA!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
         </div>
 
+        <!-- start login  div-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <div class="col-3 login" id="Login">
+            <h4 class="loginHeader" style="margin-bottom:auto 10px auto 50px; text-align:center; padding:10px;color:blue; font-family:cursive; background:linear-gradient(to right,rgba(128, 128, 128,.2),rgba(128, 128, 128))">Login</h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label  col-12 center" })
+                <div class="col-12">
+                    <div class="input-group">
+
+                        @*<span class="input-group-addon">
+                                <i class="fas fa-user-circle"></i>
+                            </span>*@
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control  col-12 center" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-12 center" })
+                <div class="col-md-12">
+                    <div class="input-group">
+
+                        @*<span class="input-group-addon">
+                                <i class="fas fa-user-circle"></i>
+                            </span>*@
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control  col-12 center" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-12">
+                    <input type="submit" value="Login" class="btn btn-outline-primary col-12" />
+                </div>
+                <br />
+                <div class="col-md-offset-2 col-12">
+
+                    @Html.ActionLink("Register", "Register", "User", new { @class = "btn btn-outline-primary col-12" })
+                </div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <!-- end login  div-->
 </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

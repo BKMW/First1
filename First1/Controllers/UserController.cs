@@ -9,44 +9,64 @@ namespace First1.Controllers
 {
     public class UserController : Controller
     {
+        private OurDbContext db = new OurDbContext();
+        
         // GET: User
         public ActionResult Index()
         {
             return View();
         }
+        #region Register
+        //[Route("Home/Register")]
         public ActionResult Register()
         {
             return View();
         }
-        #region Register
+       
         [HttpPost]
         public ActionResult Register(User user)
         {
-            if (ModelState.IsValid)
+            var SearchUsername = db.Users.Where(x => x.Username == user.Username).SingleOrDefault();
+            var SearchEmail = db.Users.Where(x => x.Email == user.Email).SingleOrDefault();
+
+            if (ModelState.IsValid&& SearchUsername == null && SearchEmail == null)
             {
-                using (OurDbContext db = new OurDbContext())
-                {
-                    db.user.Add(user);
+               
+                    db.Users.Add(user);
                     db.SaveChanges();
-                }
-                ModelState.Clear();
-                ViewBag.Message = user.FirstName + "" + user.LastName + "successfully registered.";
+                    return RedirectToAction("Login");
+                
+                //ModelState.Clear();
+                //ViewBag.Message = user.FirstName + "" + user.LastName + " successfully registered.";
+            }
+            if(SearchEmail != null)
+            {
+                ViewBag.Message = " Email is found .";
+
+            }
+            if (SearchEmail != null)
+            {
+                ViewBag.Message = " Username is found .";
             }
             return View();
         }
         #endregion
+        #region Login
+        //[Route("Home/Login")]
         public ActionResult Login()
         {
             return View();
         }
-        #region Login
+      
+       
         [HttpPost]
         public ActionResult Login(User user)
         {
-           
-                using (OurDbContext db = new OurDbContext())
-                {
-                var usr = db.user.Single(u => u.Username == user.Username && u.Password == user.Password);
+
+            //User usr = db.Users.Find(1);
+            try
+            {
+                var usr = db.Users.Single(u => u.Username == user.Username && u.Password == user.Password);
                 if (usr != null)
                 {
                     Session["Id"] = usr.Id.ToString();
@@ -54,21 +74,23 @@ namespace First1.Controllers
                     return RedirectToAction("LoginIn");
 
                 }
-                else
-                {
-                    ModelState.AddModelError("","username or Password is wrong.");
-                }
-            }
                
-            
+            } catch {
+
+                ViewBag.Message = "Login or Passwor is false.";
+
+            }
+
             return View();
+
         }
         #endregion
         public ActionResult LoginIn()
         {
             if (Session["Id"] != null)
             {
-                return View();
+               // return View();
+                return RedirectToAction("Index","Employee");
             }
             else
             {
@@ -76,6 +98,10 @@ namespace First1.Controllers
             }
             
         }
-
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
     }
 }

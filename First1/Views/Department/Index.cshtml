@@ -4,15 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
 </p>
+<div class="row">
+    <div class="col-11">
+        @*<p>
+                @Html.ActionLink("Create New", "AddEmployee", new { @class = "btn btn-outline-primary" })
+            </p>*@
+    </div>
+    <div class="col-1" style="margin: 15px auto;">
+        <a href="../Department/AddDepartment">
+            <i class="fas fa-plus-circle fa-3x"></i>
+        </a>
+
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DepârtmentName)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </th>
         <th></th>
     </tr>
@@ -20,12 +30,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DepârtmentName)
+            @Html.DisplayFor(modelItem => item.DepartmentName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }) <i class="fas fa-edit" style="color:chocolate"></i> |
+            @Html.ActionLink("Details", "Details", new { id = item.DepartmentID }) <i class="fas fa-edit" style="color:chocolate"></i> |
+            @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID }) <i class="fas fa-trash-alt" style="color:crimson"></i>
+
         </td>
     </tr>
 }
